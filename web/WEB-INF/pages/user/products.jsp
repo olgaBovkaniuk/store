@@ -31,7 +31,7 @@
                                     <td>${product.description}</td>
                                     <td>${product.price}</td>
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/dispatcher?command=add_order&productId=${product.id}"
+                                        <a href="${pageContext.request.contextPath}/dispatcher?command=add_order&product_id=${product.id}"
                                            class="btn btn-primary" role="button">Order</a>
                                     </td>
                                 </tr>

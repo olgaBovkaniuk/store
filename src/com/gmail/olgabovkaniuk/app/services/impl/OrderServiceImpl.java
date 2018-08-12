@@ -8,7 +8,6 @@ import com.gmail.olgabovkaniuk.app.services.OrderService;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -26,10 +25,12 @@ public class OrderServiceImpl implements OrderService {
             return savedOrder;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
             try {
                 connection.rollback();
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
+                e.printStackTrace();
             }
         }
         return null;
@@ -45,17 +46,19 @@ public class OrderServiceImpl implements OrderService {
             return orderList;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
             try {
                 connection.rollback();
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
+                e.printStackTrace();
             }
         }
         return null;
     }
 
     @Override
-    public boolean delete(String orderId) {
+    public boolean delete(Long orderId) {
         Connection connection = ConnectionService.getInstance().getConnection();
         try {
             connection.setAutoCommit(false);
@@ -64,10 +67,12 @@ public class OrderServiceImpl implements OrderService {
             return true;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
             try {
                 connection.rollback();
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
+                e.printStackTrace();
             }
         }
         return false;
@@ -83,10 +88,12 @@ public class OrderServiceImpl implements OrderService {
             return savedUserList;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
             try {
                 connection.rollback();
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
+                e.printStackTrace();
             }
         }
         return null;

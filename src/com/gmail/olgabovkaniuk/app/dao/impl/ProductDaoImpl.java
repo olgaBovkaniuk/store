@@ -3,7 +3,10 @@ package com.gmail.olgabovkaniuk.app.dao.impl;
 import com.gmail.olgabovkaniuk.app.dao.ProductDao;
 import com.gmail.olgabovkaniuk.app.dao.model.Product;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +26,7 @@ public class ProductDaoImpl implements ProductDao {
                 }
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
         return productList;
@@ -43,6 +46,26 @@ public class ProductDaoImpl implements ProductDao {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public Product findById(Connection connection, Long productId) {
+        String selectFromTableSql = "SELECT * FROM T_PRODUCT WHERE ID=?";
+        if (connection != null) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(selectFromTableSql)) {
+                preparedStatement.setLong(1, productId);
+                preparedStatement.execute();
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        return getProduct(resultSet);
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 
     private Product getProduct(ResultSet resultSet) throws SQLException {

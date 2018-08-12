@@ -10,7 +10,7 @@ public interface OrderService {
 
     List<Order> findUserOrders(Long userId);
 
-    boolean delete(String orderId);
+    boolean delete(Long orderId);
 
     List<Order> selectAllOrders();
 }

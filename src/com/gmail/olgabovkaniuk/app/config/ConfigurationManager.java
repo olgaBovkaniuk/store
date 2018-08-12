@@ -24,6 +24,13 @@ public class ConfigurationManager {
     public static final String ERRORS_PAGE_PATH = "errors.page.path";
     public static final String UPLOAD_FILE_PATH = "upload.file.path";
 
+    public static final String USER_PRODUCTS_CMD_URL = "user.products.cmd.url";
+    public static final String ADMIN_PRODUCTS_CMD_URL = "admin.products.cmd.url";
+    public static final String ADMIN_ORDERS_CMD_URL = "admin.orders.cmd.url";
+    public static final String USER_ORDERS_CMD_URL = "user.orders.cmd.url";
+    public static final String USERS_CMD_URL = "users.cmd.url";
+    public static final String LOGIN_CMD_URL = "login.cmd.url";
+
     public static ConfigurationManager getInstance() {
         if (instance == null) {
             instance = new ConfigurationManager();

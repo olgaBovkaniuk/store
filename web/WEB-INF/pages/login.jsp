@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <jsp:include page="/WEB-INF/pages/util/head.jsp"/>
+    <jsp:include page="util/head.jsp"/>
     <title>Login page index</title>
 </head>
 <body>
@@ -41,6 +41,6 @@
         <div class="col-md-4"></div>
     </div>
 </div>
-<jsp:include page="/WEB-INF/pages/util/js.jsp"/>
+<jsp:include page="util/js.jsp"/>
 </body>
 </html>

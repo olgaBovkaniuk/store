@@ -14,17 +14,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.util.List;
 
+import static com.gmail.olgabovkaniuk.app.config.ConfigurationManager.USER_ORDERS_CMD_URL;
+
 public class DeleteUserOrderCommand implements Command {
     private OrderService orderService = new OrderServiceImpl();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String orderId = request.getParameter("order_id");
-        boolean deleted = orderService.delete(orderId);
+        boolean deleted = orderService.delete(Long.valueOf(orderId));
         if (!deleted) {
             System.out.println("Order cannot be deleted by id, order id = " + orderId);
         }
-        response.sendRedirect("/dispatcher?command=user_orders");
+        response.sendRedirect(ConfigurationManager.getInstance().getProperty(USER_ORDERS_CMD_URL));
         return null;
     }
 }

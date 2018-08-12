@@ -20,12 +20,12 @@ public class DispatcherServlet extends HttpServlet {
         commands.put(CommandEnum.LOGIN, new LoginCommand());
         commands.put(CommandEnum.USERS, new UsersCommand());
         commands.put(CommandEnum.REGISTER_USER, new RegisterUserCommand());
-        commands.put(CommandEnum.ADMIN_PRODUCTS, new AdminProductsCommand());
         commands.put(CommandEnum.USER_PRODUCTS, new UserProductsCommand());
         commands.put(CommandEnum.ADD_ORDER, new AddOrderCommand());
+        commands.put(CommandEnum.USER_ORDERS, new UserOrdersCommand());
         commands.put(CommandEnum.DELETE_USER_ORDER, new DeleteUserOrderCommand());
         commands.put(CommandEnum.DELETE_ADMIN_ORDER, new DeleteAdminOrderCommand());
-        commands.put(CommandEnum.USER_ORDERS, new UserOrdersCommand());
+        commands.put(CommandEnum.ADMIN_PRODUCTS, new AdminProductsCommand());
         commands.put(CommandEnum.ADMIN_ORDERS, new AdminOrdersCommand());
         commands.put(CommandEnum.UPLOAD_XML, new UploadProductsCommand());
     }

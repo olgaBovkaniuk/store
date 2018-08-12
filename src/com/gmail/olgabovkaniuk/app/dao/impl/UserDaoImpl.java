@@ -4,7 +4,6 @@ import com.gmail.olgabovkaniuk.app.dao.UserDao;
 import com.gmail.olgabovkaniuk.app.dao.model.User;
 import com.gmail.olgabovkaniuk.app.dao.model.UserRoleEnum;
 
-import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,7 +28,7 @@ public class UserDaoImpl implements UserDao {
                 preparedStatement.execute();
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
         return null;
@@ -48,7 +47,7 @@ public class UserDaoImpl implements UserDao {
                 }
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
         return null;
@@ -68,7 +67,7 @@ public class UserDaoImpl implements UserDao {
                 }
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
         return userList;

@@ -13,8 +13,8 @@ import com.gmail.olgabovkaniuk.app.servlets.model.UserPrincipal;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.math.BigDecimal;
-import java.util.List;
+
+import static com.gmail.olgabovkaniuk.app.config.ConfigurationManager.USER_PRODUCTS_CMD_URL;
 
 public class AddOrderCommand implements Command {
     private OrderService orderService = new OrderServiceImpl();
@@ -22,9 +22,9 @@ public class AddOrderCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Long productId = Long.valueOf(request.getParameter("productId"));
-        Product product = new Product();
-        product.setId(productId);
+        Long productId = Long.valueOf(request.getParameter("product_id"));
+
+        Product product = productService.findById(productId);
 
         UserPrincipal userPrincipal = (UserPrincipal) request.getSession().getAttribute("user");
         User user = User.newBuilder().withId(userPrincipal.getId()).build();
@@ -32,10 +32,9 @@ public class AddOrderCommand implements Command {
         Order order = new Order();
         order.setUser(user);
         order.setProduct(product);
-        order.setTotalPrice(BigDecimal.TEN);
+        order.setTotalPrice(product.getPrice());
         orderService.save(order);
-        List<Product> productList = productService.findAll();
-        request.setAttribute("products", productList);
-        return ConfigurationManager.getInstance().getProperty(ConfigurationManager.USER_PRODUCTS_PAGE_PATH);
+        response.sendRedirect(ConfigurationManager.getInstance().getProperty(USER_PRODUCTS_CMD_URL));
+        return null;
     }
 }

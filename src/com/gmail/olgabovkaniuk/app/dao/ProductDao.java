@@ -11,4 +11,5 @@ public interface ProductDao {
 
     void save(Connection connection, Product product);
 
+    Product findById(Connection connection, Long productId);
 }

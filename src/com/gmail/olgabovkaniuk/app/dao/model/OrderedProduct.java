@@ -2,7 +2,7 @@ package com.gmail.olgabovkaniuk.app.dao.model;
 
 import java.util.Objects;
 
-public class OrderedProduct extends Identifier{
+public class OrderedProduct extends Identifier {
     private long orderId;
     private long productId;
     private int productsAmount;

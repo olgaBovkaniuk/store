@@ -9,9 +9,6 @@ public class UserPrincipal implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
-    private String mobileNumber;
-    private String additionalInfo;
-    private String password;
     private UserRoleEnum role;
 
     private UserPrincipal(Builder builder) {
@@ -19,9 +16,6 @@ public class UserPrincipal implements Serializable {
         firstName = builder.firstName;
         lastName = builder.lastName;
         email = builder.email;
-        mobileNumber = builder.mobileNumber;
-        additionalInfo = builder.additionalInfo;
-        password = builder.password;
         role = builder.role;
     }
 
@@ -41,18 +35,6 @@ public class UserPrincipal implements Serializable {
         return email;
     }
 
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public String getAdditionalInfo() {
-        return additionalInfo;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
     public UserRoleEnum getRole() {
         return role;
     }
@@ -66,9 +48,6 @@ public class UserPrincipal implements Serializable {
         private String firstName;
         private String lastName;
         private String email;
-        private String mobileNumber;
-        private String additionalInfo;
-        private String password;
         private UserRoleEnum role;
 
         private Builder() {
@@ -91,21 +70,6 @@ public class UserPrincipal implements Serializable {
 
         public Builder withEmail(String val) {
             email = val;
-            return this;
-        }
-
-        public Builder withMobileNumber(String val) {
-            mobileNumber = val;
-            return this;
-        }
-
-        public Builder withAdditionalInfo(String val) {
-            additionalInfo = val;
-            return this;
-        }
-
-        public Builder withPassword(String val) {
-            password = val;
             return this;
         }
 

@@ -1,16 +1,20 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: London
-  Date: 09.08.2018
-  Time: 20:54
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Title</title>
+    <jsp:include page="util/head.jsp"/>
+    <title>Login page index</title>
 </head>
 <body>
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h1>Something goes wrong... Please, check console for details</h1>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+<jsp:include page="util/js.jsp"/>
 </body>
 </html>

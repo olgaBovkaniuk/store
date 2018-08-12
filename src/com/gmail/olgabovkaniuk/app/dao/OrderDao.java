@@ -10,7 +10,7 @@ public interface OrderDao {
 
     List<Order> findUserOrders(Connection connection, Long userId);
 
-    boolean delete(Connection connection, String orderId);
+    boolean delete(Connection connection, Long orderId);
 
     List<Order> selectAllOrders(Connection connection);
 }

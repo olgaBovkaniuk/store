@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import static com.gmail.olgabovkaniuk.app.config.ConfigurationManager.LOGIN_CMD_URL;
+import static com.gmail.olgabovkaniuk.app.config.ConfigurationManager.USERS_CMD_URL;
+import static com.gmail.olgabovkaniuk.app.config.ConfigurationManager.USER_PRODUCTS_CMD_URL;
+
 public class LoginCommand implements Command {
     private UserService userService = new UserServiceImpl();
 
@@ -27,13 +31,13 @@ public class LoginCommand implements Command {
                     session.setAttribute("user", UserPrincipalConverter.toUserPrincipal(userByUserName));
                     switch (userByUserName.getRole()) {
                         case USER:
-                            response.sendRedirect("/dispatcher?command=user_products");
+                            response.sendRedirect(ConfigurationManager.getInstance().getProperty(USER_PRODUCTS_CMD_URL));
                             break;
                         case ADMIN:
-                            response.sendRedirect("/dispatcher?command=users");
+                            response.sendRedirect(ConfigurationManager.getInstance().getProperty(USERS_CMD_URL));
                             break;
                         default:
-                            response.sendRedirect("/dispatcher?command=login");
+                            response.sendRedirect(ConfigurationManager.getInstance().getProperty(LOGIN_CMD_URL));
                             break;
                     }
                     return null;

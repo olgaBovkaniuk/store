@@ -5,7 +5,10 @@ import com.gmail.olgabovkaniuk.app.dao.model.Order;
 import com.gmail.olgabovkaniuk.app.dao.model.Product;
 import com.gmail.olgabovkaniuk.app.dao.model.User;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +26,7 @@ public class OrderDaoImpl implements OrderDao {
                 preparedStatement.execute();
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
         return null;
@@ -33,12 +36,13 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> findUserOrders(Connection connection, Long userId) {
         List<Order> orderList = new ArrayList<>();
         String selectFromTableSql = "SELECT " +
-                "    o.ID as orderId, " +
+                "    o.ID as ORDER_ID, " +
                 "    o.ORDER_NUMBER, " +
                 "    o.USER_ID, " +
+                "    o.TOTAL_PRICE, " +
                 "    u.FIRST_NAME, " +
                 "    u.LAST_NAME, " +
-                "    p.ID as productId,  " +
+                "    p.ID as PRODUCT_ID,  " +
                 "    p.NAME," +
                 "    p.DESCRIPTION," +
                 "    p.PRICE " +
@@ -57,22 +61,23 @@ public class OrderDaoImpl implements OrderDao {
                 }
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
         return orderList;
     }
 
     @Override
-    public boolean delete(Connection connection, String orderId) {
-        String deleteFromTableSql = "DELETE FROM T_ORDER WHERE id=" + orderId;
+    public boolean delete(Connection connection, Long orderId) {
+        String deleteFromTableSql = "DELETE FROM T_ORDER WHERE id=?";
         if (connection != null) {
-            try (Statement preparedStatement = connection.createStatement()) {
-                preparedStatement.execute(deleteFromTableSql);
+            try (PreparedStatement preparedStatement = connection.prepareStatement(deleteFromTableSql)) {
+                preparedStatement.setLong(1, orderId);
+                preparedStatement.execute();
                 return true;
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
         return false;
@@ -82,12 +87,13 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> selectAllOrders(Connection connection) {
         List<Order> orderList = new ArrayList<>();
         String selectFromTableSql = "SELECT " +
-                "    o.ID as orderId, " +
+                "    o.ID as ORDER_ID, " +
                 "    o.ORDER_NUMBER, " +
                 "    o.USER_ID, " +
+                "    o.TOTAL_PRICE, " +
                 "    u.FIRST_NAME, " +
                 "    u.LAST_NAME, " +
-                "    p.ID as productId,  " +
+                "    p.ID as PRODUCT_ID,  " +
                 "    p.NAME," +
                 "    p.DESCRIPTION," +
                 "    p.PRICE " +
@@ -104,7 +110,7 @@ public class OrderDaoImpl implements OrderDao {
                 }
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
         return orderList;
@@ -118,16 +124,17 @@ public class OrderDaoImpl implements OrderDao {
                 .build();
 
         Product product = new Product();
-        product.setId(resultSet.getLong("productId"));
+        product.setId(resultSet.getLong("PRODUCT_ID"));
         product.setName(resultSet.getString("NAME"));
         product.setDescription(resultSet.getString("DESCRIPTION"));
         product.setPrice(resultSet.getBigDecimal("PRICE"));
 
         Order order = new Order();
+        order.setId(resultSet.getLong("ORDER_ID"));
         order.setOrderNumber(resultSet.getString("ORDER_NUMBER"));
-        order.setId(resultSet.getLong("orderId"));
         order.setUser(user);
         order.setProduct(product);
+        order.setTotalPrice(resultSet.getBigDecimal("TOTAL_PRICE"));
         return order;
     }
 }

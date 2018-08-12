@@ -8,6 +8,8 @@ public interface ProductService {
 
     List<Product> findAll();
 
+    Product findById(Long productId);
+
     void save(Product product);
 
     void saveAll(List<Product> products);

@@ -26,16 +26,6 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
-   <!-- <filter>
-        <filter-name>SequrityFilter</filter-name>
-        <filter-class>com.gmail.olgabovkaniuk.app.servlets.filter.SecurityFilter</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>SequrityFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>-->
-
     <servlet-mapping>
         <servlet-name>DispatcherServlet</servlet-name>
         <url-pattern>/dispatcher</url-pattern>
@@ -44,14 +34,50 @@
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/resources/*</url-pattern>
-        <!--<url-pattern>/index.jsp</url-pattern>-->
     </servlet-mapping>
 
-<!--    <jsp-config>
-        <taglib>
-            <taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
-            <taglib-location>/WEB-INF/c.tld</taglib-location>
-        </taglib>
-    </jsp-config>-->
+    <servlet>
+        <servlet-name>ExceptionServlet</servlet-name>
+        <servlet-class>com.gmail.olgabovkaniuk.app.servlets.ExceptionServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ExceptionServlet</servlet-name>
+        <url-pattern>/errors</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>com.gmail.olgabovkaniuk.app.servlets.filter.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <servlet-name>DispatcherServlet</servlet-name>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>LogFilter</filter-name>
+        <filter-class>com.gmail.olgabovkaniuk.app.servlets.filter.LogFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>RequestEncodeFilter</filter-name>
+        <filter-class>com.gmail.olgabovkaniuk.app.servlets.filter.RequestEncodeFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>LogFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>RequestEncodeFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/errors</location>
+    </error-page>
 
 </web-app>

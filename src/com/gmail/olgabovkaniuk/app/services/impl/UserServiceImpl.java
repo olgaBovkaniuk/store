@@ -24,10 +24,12 @@ public class UserServiceImpl implements UserService {
             return savedUser;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
             try {
                 connection.rollback();
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
+                e.printStackTrace();
             }
         }
         return null;
@@ -43,10 +45,12 @@ public class UserServiceImpl implements UserService {
             return savedUser;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
             try {
                 connection.rollback();
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
+                e.printStackTrace();
             }
         }
         return null;
@@ -62,10 +66,12 @@ public class UserServiceImpl implements UserService {
             return savedUserList;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
             try {
                 connection.rollback();
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
+                e.printStackTrace();
             }
         }
         return null;

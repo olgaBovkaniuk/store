@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 
+import static com.gmail.olgabovkaniuk.app.config.ConfigurationManager.LOGIN_CMD_URL;
+
 public class RegisterUserCommand implements Command {
     private UserService userService = new UserServiceImpl();
 
@@ -46,7 +48,7 @@ public class RegisterUserCommand implements Command {
                 .withRole(UserRoleEnum.USER)
                 .build()
         );
-        response.sendRedirect("/dispatcher?command=login");
+        response.sendRedirect(ConfigurationManager.getInstance().getProperty(LOGIN_CMD_URL));
         return null;
     }
 }

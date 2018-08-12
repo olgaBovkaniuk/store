@@ -3,7 +3,7 @@ package com.gmail.olgabovkaniuk.app.dao.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Product extends Identifier{
+public class Product extends Identifier {
     private String name;
     private String description;
     private BigDecimal price;
