@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<ProductStore>
+    <ProductRecord>
+        <Name>Unicorn</Name>
+        <Description>Lollopylou unicorn soft toy</Description>
+        <Price>20</Price>
+    </ProductRecord>
+    <ProductRecord>
+        <Name>Kitten Soft Toy</Name>
+        <Description>Kitten Soft Toy</Description>
+        <Price>13</Price>
+    </ProductRecord>
+    <ProductRecord>
+        <Name>Monkey</Name>
+        <Description>Fuddlewuddle monkey medium soft toy</Description>
+        <Price>18</Price>
+    </ProductRecord>
+    <ProductRecord>
+        <Name>Lobster</Name>
+        <Description>Larry Lobster soft toy 27cm</Description>
+        <Price>22</Price>
+    </ProductRecord>
+</ProductStore>

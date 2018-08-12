@@ -1,0 +1,18 @@
+CREATE TABLE IF NOT EXISTS T_PRODUCT(
+  ID INTEGER (5) AUTO_INCREMENT NOT NULL,
+  NAME VARCHAR (50) NOT NULL,
+  DESCRIPTION VARCHAR (200) NULL,
+  PRICE DECIMAL (7) NOT NULL,
+  PRIMARY KEY (ID)
+)
+
+INSERT INTO T_PRODUCT (NAME, DESCRIPTION, PRICE) VALUES ('Rabbit', 'soft toy for joy', 5)
+INSERT INTO T_PRODUCT (NAME, DESCRIPTION, PRICE) VALUES ('Cat', 'soft toy', 10)
+INSERT INTO T_PRODUCT (NAME, DESCRIPTION, PRICE) VALUES ('Cat Plushes', 'Plushes soft toy', 11)
+INSERT INTO T_PRODUCT (NAME, DESCRIPTION,PRICE) VALUES ('Kitten Soft Toy', 'Kitten Soft Toy', 13)
+
+
+INSERT INTO T_PRODUCT (NAME, DESCRIPTION, PRICE) VALUES ('Cat Plushes', 'Plushes soft toy', 11),
+('Kitten Soft Toy', 'Kitten Soft Toy', 13),
+('Rabbit', 'soft toy for joy', 5),
+('Cat', 'soft toy', 10)
