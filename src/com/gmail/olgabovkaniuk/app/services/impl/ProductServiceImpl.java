@@ -39,17 +39,6 @@ public class ProductServiceImpl implements ProductService {
         return null;
     }
 
-   /* public List<Product> findAllCall() {
-        Callable<List<Product>> callable = new Callable<List<Product>>() {
-            @Override
-            public List<Product> call() throws Exception {
-                List<Product> savedProductList = productDao.findAll(ConnectionService.getInstance().getConnection());
-                return savedProductList;
-            }
-        };
-        return doInTransaction(callable);
-    }*/
-
     @Override
     public void save(Product product) {
         Connection connection = ConnectionService.getInstance().getConnection();
@@ -131,27 +120,4 @@ public class ProductServiceImpl implements ProductService {
         }
         return null;
     }
-
-   /* private <T> T doInTransaction(Callable<T> callable) {
-        Connection connection = ConnectionService.getInstance().getConnection();
-        try {
-            connection.setAutoCommit(false);
-            T result = callable.call();
-            connection.commit();
-            return result;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-            try {
-                connection.rollback();
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-                e.printStackTrace();
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
-        return null;
-    }*/
 }
